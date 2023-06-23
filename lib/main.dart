@@ -101,10 +101,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 13),
+                  padding: const EdgeInsets.only(bottom: 13, left: 30, right: 30),
                   child: SizedBox(
                     height: 65,
-                    width: 340,
+                    width: double.infinity,
                     child: ElevatedButton(
                       style: const ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(
@@ -124,23 +124,26 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 65,
-                  width: 340,
-                  child: ElevatedButton(
-                    style: const ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(
-                      Colors.white,
-                    )),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const RegistrationPage()));
-                    },
-                    child: const Text(
-                      "Create an account",
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: SizedBox(
+                    height: 65,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: const ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(
+                        Colors.white,
+                      )),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RegistrationPage()));
+                      },
+                      child: const Text(
+                        "Create an account",
+                        style: TextStyle(color: Colors.black, fontSize: 18),
+                      ),
                     ),
                   ),
                 ),
@@ -230,10 +233,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 50, bottom: 85),
+                padding: const EdgeInsets.only(top: 50, bottom: 85, left: 30, right: 30),
                 child: SizedBox(
                   height: 65,
-                  width: 340,
+                  width: double.infinity,
                   child: ElevatedButton(
                     style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(
@@ -421,10 +424,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 50, bottom: 85),
+                padding: const EdgeInsets.only(top: 50, bottom: 85, left: 30, right: 30),
                 child: SizedBox(
                   height: 65,
-                  width: 340,
+                  width: double.infinity,
                   child: ElevatedButton(
                     style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(

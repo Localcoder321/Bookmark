@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'home_page.dart';
 import 'registration_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,6 +13,90 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
+
+  String? emailValidationText;
+  String? passwordValidationText;
+
+  String email = "";
+  String password = "";
+
+  bool get isAllInputsAreValid => email.isNotEmpty && password.isNotEmpty;
+
+  void validateEmail(String value) {
+    if (!RegExp(r"^[a-zA-Z][a-zA-Z0-9]*@[a-zA-Z0-9]+\.[a-zA-Z]{2,6}$")
+        .hasMatch(value)) {
+      setState(() {
+        emailValidationText = "Invalid email address!";
+      });
+      return;
+    }
+
+    setState(() {
+      emailValidationText = null;
+      email = value;
+    });
+  }
+
+  void validatePassword(String value) {
+    if (!RegExp(r".{8,}").hasMatch(value)) {
+      setState(() {
+        passwordValidationText =
+        "Password is too short, it must be at least 8 characters";
+      });
+      return;
+    }
+
+    if (value.contains(" ")) {
+      setState(() {
+        passwordValidationText = "Password shouldn't have space";
+      });
+      return;
+    }
+
+    if (!RegExp(r"\d").hasMatch(value)) {
+      setState(() {
+        passwordValidationText = "Password must have at least one number";
+      });
+      return;
+    }
+
+    if (!RegExp(r"[a-z]").hasMatch(value)) {
+      setState(() {
+        passwordValidationText = "Password must have at least one letter";
+      });
+      return;
+    }
+
+    if (!RegExp(r"[A-Z]").hasMatch(value)) {
+      setState(() {
+        passwordValidationText =
+        "Password must have at least one Capital letter";
+      });
+      return;
+    }
+
+    setState(() {
+      passwordValidationText = null;
+      password = value;
+    });
+  }
+
+  void openCreateAccountPage() => Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const RegistrationPage(),
+    ),
+  );
+
+  void openHomePage() => isAllInputsAreValid
+      ? Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const HomeScreen(),
+    ),
+  )
+      : null;
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +119,19 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(fontSize: 18),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 30, right: 30, bottom: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: "Email Address",
-                    labelStyle: TextStyle(fontFamily: "Raleway"),
+                    labelStyle: const TextStyle(fontFamily: "Raleway"),
                     hintText: "Enter full email address",
-                    hintStyle: TextStyle(fontFamily: "Raleway"),
+                    hintStyle: const TextStyle(fontFamily: "Raleway"),
+                    errorText: emailValidationText,
                     contentPadding:
-                    EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                    prefixIcon: Image(
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                    prefixIcon: const Image(
                       image: AssetImage("assets/images/sms.png"),
                     ),
                   ),
@@ -61,6 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                     labelStyle: const TextStyle(fontFamily: "Raleway"),
                     hintText: "Enter password",
                     hintStyle: const TextStyle(fontFamily: "Raleway"),
+                    errorText: passwordValidationText,
                     contentPadding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                     prefixIcon: const Image(

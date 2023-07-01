@@ -164,6 +164,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
+                  onSubmitted: validateName,
                   decoration: InputDecoration(
                     labelText: "Full name",
                     labelStyle: const TextStyle(fontFamily: "Raleway"),
@@ -182,6 +183,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
+                  onSubmitted: validateEmail,
                   decoration: InputDecoration(
                     labelText: "Email Address",
                     labelStyle: const TextStyle(fontFamily: "Raleway"),
@@ -201,6 +203,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 child: TextField(
                   obscureText: !_isPasswordVisible,
                   keyboardType: TextInputType.emailAddress,
+                  onSubmitted: validatePassword,
                   decoration: InputDecoration(
                     labelText: "Password",
                     labelStyle: const TextStyle(fontFamily: "Raleway"),
@@ -230,6 +233,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 child: TextField(
                   obscureText: !_isRepeatPasswordVisible,
                   keyboardType: TextInputType.emailAddress,
+                    onSubmitted: validateReEnter,
                   decoration: InputDecoration(
                     labelText: "Password",
                     labelStyle: const TextStyle(fontFamily: "Raleway"),

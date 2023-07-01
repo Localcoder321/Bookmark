@@ -135,6 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                       image: AssetImage("assets/images/sms.png"),
                     ),
                   ),
+                  onSubmitted: validateEmail,
                 ),
               ),
               Padding(
@@ -142,6 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: TextField(
                   obscureText: !_isPasswordVisible,
                   keyboardType: TextInputType.emailAddress,
+                  onSubmitted: validatePassword,
                   decoration: InputDecoration(
                     labelText: "Password",
                     labelStyle: const TextStyle(fontFamily: "Raleway"),
